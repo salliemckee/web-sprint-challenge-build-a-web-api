@@ -17,7 +17,6 @@ router.get("/", (req, res) => {
 router.get("/:id", (req, res) => {
   Actions.get(req.params.id)
     .then((action) => {
-      console.log(action);
       if (!action) {
         res.status(404);
       } else {
