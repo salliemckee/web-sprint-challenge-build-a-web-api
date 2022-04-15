@@ -12,7 +12,7 @@ server.use(express.json());
 
 server.use("/api/actions/", actionsRouter);
 
-// server.use("/api/projects/", projectsRouter);
+server.use("/api/projects/", projectsRouter);
 
 // server.use("*", (req, res) => {
 //   res.send("<h1>Hello World!</h1>");
