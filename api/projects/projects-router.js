@@ -38,7 +38,26 @@ router.post("/", (req, res) => {
     });
 });
 
-router.put("/:id", (req, res) => {});
+router.put("/:id", validateProjectId, (req, res) => {
+  const { name, description } = req.body;
+  if (!name || !description) {
+    res.status(400).json({ message: "name and description required" });
+  } else {
+    Projects.update(req.params.id, req.body)
+      .then((project) => {
+        if (!project) {
+          res
+            .status(404)
+            .json({ message: "The specified project does not exist" });
+        } else {
+          return res.status(400).json(project);
+        }
+      })
+      .catch((error) => {
+        res.status(500);
+      });
+  }
+});
 
 router.delete("/:id", async (req, res) => {
   try {

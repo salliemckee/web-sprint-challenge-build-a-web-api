@@ -27,7 +27,9 @@ router.get("/:id", validateActionId, (req, res) => {
 
 router.post("/", (req, res) => {
   if (!req.body.notes || !req.body.description || !req.body.project_id) {
-    res.status(400).json({ message: "name and description required" });
+    res
+      .status(400)
+      .json({ message: "project id, description, and notes required" });
   } else
     Actions.insert(req.body)
       .then((action) => {
@@ -36,6 +38,21 @@ router.post("/", (req, res) => {
       .catch((error) => {
         res.status(500);
       });
+});
+
+router.put("/:id", validateActionId, (req, res) => {
+  if (!req.body.notes || !req.body.description || !req.body.project_id) {
+    res
+      .status(400)
+      .json({ message: "project id, description, and notes required" });
+  }
+  Actions.update(req.params.id, req.body)
+    .then((action) => {
+      res.status(201).json(action);
+    })
+    .catch((error) => {
+      res.status(500);
+    });
 });
 
 router.delete("/:id", async (req, res) => {
