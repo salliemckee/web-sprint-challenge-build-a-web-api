@@ -25,11 +25,18 @@ router.get("/:id", validateActionId, (req, res) => {
     });
 });
 
-// router.post("/", (req, res)=>{
-//     Actions.insert(req.body).then(()=> {
-//         if ()
-//     }).catch()
-// })
+router.post("/", (req, res) => {
+  if (!req.body.name || !req.body.description) {
+    res.status(400).json({ message: "name and description required" });
+  }
+  Actions.insert(req.body)
+    .then((action) => {
+      res.status(201).json(action);
+    })
+    .catch((error) => {
+      res.status(500);
+    });
+});
 
 router.delete("/:id", async (req, res) => {
   try {
