@@ -73,4 +73,18 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
+router.get("/:id/actions", async (req, res) => {
+  try {
+    const project = await Projects.getProjectActions(req.params.id);
+    if (!project) {
+      res.status(404).json({ message: "the project does not exist" });
+    } else {
+      await Projects.getProjectActions(req.params.id);
+      res.json(project);
+    }
+  } catch (error) {
+    res.status(500).json({ message: "Error removing project" });
+  }
+});
+
 module.exports = router;
