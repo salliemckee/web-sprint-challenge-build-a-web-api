@@ -159,4 +159,4 @@ Be prepared to demonstrate your understanding of this week's concepts by answeri
    The Express router is a function that is used to create a new router object that handles requests.
 
 1. Describe tooling used to manually test the correctness of an API.
-   API testing is software testing that analyzes an API to verify it fulfulls its expected functionality, security, performance, and reliability. Examples of these would be Postman or HTTPie.
+   API testing is software testing that analyzes an API to verify it fulfills its expected functionality, security, performance, and reliability. Examples of these would be Postman or HTTPie.
